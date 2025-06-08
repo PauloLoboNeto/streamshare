@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#121212"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1A1A1A"/>
+  <text x="30" y="38" font-family="Arial" font-size="24" fill="#FF4B91" font-weight="bold">StreamShare</text>
+  
+  <!-- Search Bar -->
+  <rect x="300" y="15" width="400" height="30" rx="15" fill="#2A2A2A"/>
+  <text x="330" y="37" font-family="Arial" font-size="14" fill="#777">Pesquisar conteúdo, criadores ou categorias...</text>
+  <circle cx="710" cy="30" r="10" fill="#555"/>
+  <path d="M713 27 L718 32" stroke="#999" stroke-width="2"/>
+  
+  <!-- User Menu -->
+  <circle cx="1130" cy="30" r="20" fill="#3A3A3A"/>
+  <text x="1125" y="35" font-family="Arial" font-size="16" fill="#FFF">U</text>
+  
+  <!-- Notification -->
+  <circle cx="1080" cy="30" r="15" fill="#2A2A2A"/>
+  <text x="1075" y="35" font-family="Arial" font-size="14" fill="#FFF">🔔</text>
+  <circle cx="1090" cy="25" r="8" fill="#FF4B91"/>
+  <text x="1088" y="28" font-family="Arial" font-size="10" fill="#FFF">3</text>
+  
+  <!-- Left Sidebar -->
+  <rect x="0" y="60" width="220" height="840" fill="#1A1A1A"/>
+  
+  <!-- Sidebar Menu Items -->
+  <rect x="20" y="90" width="180" height="40" rx="5" fill="#2A2A2A"/>
+  <text x="50" y="115" font-family="Arial" font-size="14" fill="#FFF">🏠 Início</text>
+  
+  <rect x="20" y="140" width="180" height="40" rx="5" fill="#1A1A1A"/>
+  <text x="50" y="165" font-family="Arial" font-size="14" fill="#BBB">🔥 Tendências</text>
+  
+  <rect x="20" y="190" width="180" height="40" rx="5" fill="#1A1A1A"/>
+  <text x="50" y="215" font-family="Arial" font-size="14" fill="#BBB">👥 Seguindo</text>
+  
+  <rect x="20" y="240" width="180" height="40" rx="5" fill="#1A1A1A"/>
+  <text x="50" y="265" font-family="Arial" font-size="14" fill="#BBB">🎬 Biblioteca</text>
+  
+  <rect x="20" y="290" width="180" height="40" rx="5" fill="#1A1A1A"/>
+  <text x="50" y="315" font-family="Arial" font-size="14" fill="#BBB">⚡ Watch Parties</text>
+  
+  <rect x="20" y="370" width="180" height="1" fill="#333"/>
+  <text x="30" y="400" font-family="Arial" font-size="14" fill="#777">CATEGORIAS</text>
+  
+  <text x="30" y="430" font-family="Arial" font-size="14" fill="#BBB">🎮 Games</text>
+  <text x="30" y="460" font-family="Arial" font-size="14" fill="#BBB">🎵 Música</text>
+  <text x="30" y="490" font-family="Arial" font-size="14" fill="#BBB">🎨 Arte</text>
+  <text x="30" y="520" font-family="Arial" font-size="14" fill="#BBB">💻 Tecnologia</text>
+  <text x="30" y="550" font-family="Arial" font-size="14" fill="#BBB">🍿 Filmes</text>
+  
+  <!-- Main Content Area -->
+  <rect x="220" y="60" width="980" height="840" fill="#121212"/>
+  
+  <!-- Live Now Section -->
+  <text x="250" y="100" font-family="Arial" font-size="22" fill="#FFF" font-weight="bold">Ao Vivo Agora</text>
+  
+  <!-- Live Stream Cards -->
+  <rect x="250" y="120" width="300" height="180" rx="10" fill="#2A2A2A"/>
+  <rect x="250" y="120" width="300" height="140" rx="10" fill="#333"/>
+  <circle cx="270" cy="140" r="10" fill="#FF4B91"/>
+  <text x="285" y="145" font-family="Arial" font-size="12" fill="#FFF">AO VIVO</text>
+  <text x="260" y="280" font-family="Arial" font-size="14" fill="#FFF" font-weight="bold">Torneio Arena - Final</text>
+  <text x="260" y="300" font-family="Arial" font-size="12" fill="#BBB">GameMaster • 2.4K assistindo</text>
+  
+  <rect x="570" y="120" width="300" height="180" rx="10" fill="#2A2A2A"/>
+  <rect x="570" y="120" width="300" height="140" rx="10" fill="#333"/>
+  <circle cx="590" cy="140" r="10" fill="#FF4B91"/>
+  <text x="605" y="145" font-family="Arial" font-size="12" fill="#FFF">AO VIVO</text>
+  <text x="580" y="280" font-family="Arial" font-size="14" fill="#FFF" font-weight="bold">Criando Música Eletrônica</text>
+  <text x="580" y="300" font-family="Arial" font-size="12" fill="#BBB">BeatProducer • 873 assistindo</text>
+  
+  <rect x="890" y="120" width="300" height="180" rx="10" fill="#2A2A2A"/>
+  <rect x="890" y="120" width="300" height="140" rx="10" fill="#333"/>
+  <circle cx="910" cy="140" r="10" fill="#FF4B91"/>
+  <text x="925" y="145" font-family="Arial" font-size="12" fill="#FFF">AO VIVO</text>
+  <text x="900" y="280" font-family="Arial" font-size="14" fill="#FFF" font-weight="bold">Podcast Tecnologia Hoje</text>
+  <text x="900" y="300" font-family="Arial" font-size="12" fill="#BBB">TechTalk • 1.1K assistindo</text>
+  
+  <!-- Recommendations Section -->
+  <text x="250" y="350" font-family="Arial" font-size="22" fill="#FFF" font-weight="bold">Recomendados para Você</text>
+  
+  <!-- Recommendation Cards - Row 1 -->
+  <rect x="250" y="370" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="250" y="370" width="220" height="110" rx="10" fill="#333"/>
+  <text x="260" y="500" font-family="Arial" font-size="14" fill="#FFF">Aprenda React Hooks</text>
+  <text x="260" y="520" font-family="Arial" font-size="12" fill="#BBB">CodeMaster • 45K views</text>
+  
+  <rect x="490" y="370" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="490" y="370" width="220" height="110" rx="10" fill="#333"/>
+  <text x="500" y="500" font-family="Arial" font-size="14" fill="#FFF">UI/UX Design Trends 2025</text>
+  <text x="500" y="520" font-family="Arial" font-size="12" fill="#BBB">DesignPro • 32K views</text>
+  
+  <rect x="730" y="370" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="730" y="370" width="220" height="110" rx="10" fill="#333"/>
+  <text x="740" y="500" font-family="Arial" font-size="14" fill="#FFF">Kotlin Coroutines Avançado</text>
+  <text x="740" y="520" font-family="Arial" font-size="12" fill="#BBB">AndroidDev • 28K views</text>
+  
+  <rect x="970" y="370" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="970" y="370" width="220" height="110" rx="10" fill="#333"/>
+  <text x="980" y="500" font-family="Arial" font-size="14" fill="#FFF">Kafka para Iniciantes</text>
+  <text x="980" y="520" font-family="Arial" font-size="12" fill="#BBB">DevOpsGuru • 19K views</text>
+  
+  <!-- Recommendation Cards - Row 2 -->
+  <rect x="250" y="540" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="250" y="540" width="220" height="110" rx="10" fill="#333"/>
+  <text x="260" y="670" font-family="Arial" font-size="14" fill="#FFF">Spring Boot + gRPC</text>
+  <text x="260" y="690" font-family="Arial" font-size="12" fill="#BBB">BackendPro • 22K views</text>
+  
+  <rect x="490" y="540" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="490" y="540" width="220" height="110" rx="10" fill="#333"/>
+  <text x="500" y="670" font-family="Arial" font-size="14" fill="#FFF">Microserviços Escaláveis</text>
+  <text x="500" y="690" font-family="Arial" font-size="12" fill="#BBB">ArchitectDev • 41K views</text>
+  
+  <rect x="730" y="540" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="730" y="540" width="220" height="110" rx="10" fill="#333"/>
+  <text x="740" y="670" font-family="Arial" font-size="14" fill="#FFF">Event-Driven com Kafka</text>
+  <text x="740" y="690" font-family="Arial" font-size="12" fill="#BBB">StreamMaster • 33K views</text>
+  
+  <rect x="970" y="540" width="220" height="150" rx="10" fill="#2A2A2A"/>
+  <rect x="970" y="540" width="220" height="110" rx="10" fill="#333"/>
+  <text x="980" y="670" font-family="Arial" font-size="14" fill="#FFF">OAuth 2.0 & OpenID Connect</text>
+  <text x="980" y="690" font-family="Arial" font-size="12" fill="#BBB">SecurityPro • 15K views</text>
+  
+  <!-- Create Content Button -->
+  <circle cx="1120" cy="800" r="40" fill="#FF4B91"/>
+  <text x="1103" y="805" font-family="Arial" font-size="24" fill="#FFF">+</text>
+</svg>

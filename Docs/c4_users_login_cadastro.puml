@@ -1,0 +1,33 @@
+
+@startuml C4_LoginCadastroUsersSystem
+
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "Usuário", "Pessoa acessando o sistema via app ou web")
+
+System_Boundary(s1, "Sistema de Usuários") {
+
+  Container(login, "Login", "Java/Spring", "Serviço responsável por autenticação e emissão de sessões")
+  Container(cadastro, "Cadastro", "Java/Spring", "Serviço responsável por coletar e validar dados de cadastro")
+  Container(users, "Users", "Java/Spring", "Serviço central de domínio de usuários")
+  Container(redis, "Redis", "Redis", "Armazena sessões com TTL de 5 minutos")
+  Container(postgres, "PostgreSQL", "Banco relacional", "Armazena os dados consistentes dos usuários")
+  Container(sqs, "SQS", "AWS SQS", "Fila para processamento assíncrono dos cadastros")
+  Container(kafka, "Kafka", "Apache Kafka", "Event stream para notificações e integrações")
+
+}
+
+Rel(user, login, "Realiza login")
+Rel(user, cadastro, "Envia dados para cadastro")
+
+Rel(login, redis, "Armazena/recupera sessão", "Cache TTL 5min")
+Rel(login, users, "Consulta credenciais via gRPC", "gRPC")
+
+Rel(cadastro, users, "GET para validar se e-mail já existe", "HTTP")
+Rel(cadastro, sqs, "Envia requisição de cadastro", "POST")
+Rel(sqs, users, "Consumido e processado", "Worker")
+
+Rel(users, postgres, "Salva dados do usuário", "SQL")
+Rel(users, kafka, "Publica eventos de domínio (UserCreated)", "POST")
+
+@enduml

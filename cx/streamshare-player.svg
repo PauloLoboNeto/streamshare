@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#0A0A0A"/>
+  
+  <!-- Video Player Area -->
+  <rect x="0" y="0" width="900" height="700" fill="#000"/>
+  
+  <!-- Video Content (Placeholder) -->
+  <rect x="0" y="0" width="900" height="650" fill="#222"/>
+  <text x="450" y="325" font-family="Arial" font-size="20" fill="#555" text-anchor="middle">CONTEÚDO DO VÍDEO</text>
+  
+  <!-- Video Controls Bar -->
+  <rect x="0" y="650" width="900" height="50" fill="#1A1A1A" opacity="0.9"/>
+  
+  <!-- Progress Bar -->
+  <rect x="20" y="660" width="700" height="6" rx="3" fill="#333"/>
+  <rect x="20" y="660" width="420" height="6" rx="3" fill="#FF4B91"/>
+  <circle cx="440" cy="663" r="8" fill="#FF4B91"/>
+  
+  <!-- Time Display -->
+  <text x="750" y="670" font-family="Arial" font-size="14" fill="#CCC">32:45 / 54:12</text>
+  
+  <!-- Control Buttons -->
+  <circle cx="50" cy="680" r="15" fill="transparent" stroke="#CCC" stroke-width="1"/>
+  <text x="45" y="685" font-family="Arial" font-size="16" fill="#CCC">▶</text>
+  
+  <circle cx="90" cy="680" r="15" fill="transparent" stroke="#CCC" stroke-width="1"/>
+  <text x="85" y="685" font-family="Arial" font-size="12" fill="#CCC">⏭</text>
+  
+  <rect x="130" y="675" width="30" height="10" rx="5" fill="#CCC"/>
+  
+  <circle cx="185" cy="680" r="15" fill="transparent" stroke="#CCC" stroke-width="1"/>
+  <text x="177" y="685" font-family="Arial" font-size="14" fill="#CCC">CC</text>
+  
+  <circle cx="225" cy="680" r="15" fill="transparent" stroke="#CCC" stroke-width="1"/>
+  <text x="217" y="685" font-family="Arial" font-size="12" fill="#CCC">HD</text>
+  
+  <circle cx="850" cy="680" r="15" fill="transparent" stroke="#CCC" stroke-width="1"/>
+  <text x="842" y="685" font-family="Arial" font-size="14" fill="#CCC">⚙</text>
+  
+  <!-- Live Indicator -->
+  <circle cx="810" cy="680" r="8" fill="#FF4B91"/>
+  <text x="825" y="685" font-family="Arial" font-size="14" fill="#FFF">LIVE</text>
+  
+  <!-- Video Info -->
+  <text x="20" y="730" font-family="Arial" font-size="22" fill="#FFF" font-weight="bold">Workshop: Arquitetura Event-Driven com Kotlin</text>
+  <text x="20" y="760" font-family="Arial" font-size="14" fill="#BBB">ArchitectPro • 1.2K assistindo agora</text>
+  
+  <!-- Action Buttons -->
+  <rect x="20" y="780" width="100" height="35" rx="17.5" fill="#2A2A2A"/>
+  <text x="40" y="803" font-family="Arial" font-size="14" fill="#FFF">👍 823</text>
+  
+  <rect x="130" y="780" width="100" height="35" rx="17.5" fill="#2A2A2A"/>
+  <text x="150" y="803" font-family="Arial" font-size="14" fill="#FFF">👎 12</text>
+  
+  <rect x="240" y="780" width="120" height="35" rx="17.5" fill="#2A2A2A"/>
+  <text x="260" y="803" font-family="Arial" font-size="14" fill="#FFF">💬 Comentar</text>
+  
+  <rect x="370" y="780" width="120" height="35" rx="17.5" fill="#2A2A2A"/>
+  <text x="390" y="803" font-family="Arial" font-size="14" fill="#FFF">🔗 Compartilhar</text>
+  
+  <rect x="500" y="780" width="170" height="35" rx="17.5" fill="#FF4B91"/>
+  <text x="525" y="803" font-family="Arial" font-size="14" fill="#FFF">🎬 Criar Watch Party</text>
+  
+  <!-- Right Sidebar (Chat) -->
+  <rect x="900" y="0" width="300" height="900" fill="#1A1A1A"/>
+  <rect x="900" y="0" width="300" height="50" fill="#242424"/>
+  <text x="940" y="30" font-family="Arial" font-size="18" fill="#FFF" font-weight="bold">Chat ao Vivo</text>
+  <text x="1140" y="30" font-family="Arial" font-size="14" fill="#FF4B91">1.2K</text>
+  
+  <!-- Chat Messages -->
+  <rect x="910" y="60" width="280" height="740" fill="#1A1A1A"/>
+  
+  <!-- Message 1 -->
+  <text x="920" y="90" font-family="Arial" font-size="14" fill="#FF6B6B" font-weight="bold">DevKing:</text>
+  <text x="980" y="90" font-family="Arial" font-size="14" fill="#EEE">Ótima explicação sobre Kafka!</text>
+  
+  <!-- Message 2 -->
+  <text x="920" y="120" font-family="Arial" font-size="14" fill="#5BB4FF" font-weight="bold">JuliaK:</text>
+  <text x="970" y="120" font-family="Arial" font-size="14" fill="#EEE">Como implementar isso no Spring?</text>
+  
+  <!-- Message 3 -->
+  <text x="920" y="150" font-family="Arial" font-size="14" fill="#FFCF5B" font-weight="bold">KotlinGuru:</text>
+  <text x="1000" y="150" font-family="Arial" font-size="14" fill="#EEE">Você pode usar coroutines para lidar com o fluxo assíncrono 👍</text>
+  
+  <!-- Message 4 -->
+  <text x="920" y="190" font-family="Arial" font-size="14" fill="#64D2A8" font-weight="bold">StreamDev:</text>
+  <text x="990" y="190" font-family="Arial" font-size="14" fill="#EEE">Quais são as melhores práticas para Schema Registry?</text>
+  
+  <!-- Message 5 -->
+  <text x="920" y="220" font-family="Arial" font-size="14" fill="#FF6B6B" font-weight="bold">DevKing:</text>
+  <text x="980" y="220" font-family="Arial" font-size="14" fill="#EEE">Alguém já usou isso em produção?</text>
+  
+  <!-- Message 6 -->
+  <text x="920" y="250" font-family="Arial" font-size="14" fill="#B388FF" font-weight="bold">CloudArch:</text>
+  <text x="990" y="250" font-family="Arial" font-size="14" fill="#EEE">Sim, roda muito bem no Kubernetes 🚀</text>
+  
+  <!-- More Messages Placeholder -->
+  <text x="920" y="290" font-family="Arial" font-size="14" fill="#5BB4FF" font-weight="bold">JuliaK:</text>
+  <text x="970" y="290" font-family="Arial" font-size="14" fill="#EEE">Qual a latência típica?</text>
+  
+  <text x="920" y="320" font-family="Arial" font-size="14" fill="#FFCF5B" font-weight="bold">KotlinGuru:</text>
+  <text x="1000" y="320" font-family="Arial" font-size="14" fill="#EEE">Depende da configuração, mas pode ser menos de 10ms</text>
+  
+  <!-- Chat Input -->
+  <rect x="910" y="810" width="280" height="70" rx="5" fill="#242424"/>
+  <text x="925" y="835" font-family="Arial" font-size="14" fill="#777">Digite sua mensagem...</text>
+  <circle cx="1160" cy="835" r="20" fill="#FF4B91"/>
+  <text x="1153" y="840" font-family="Arial" font-size="16" fill="#FFF">➤</text>
+  
+  <!-- React Buttons Overlay -->
+  <circle cx="120" cy="600" r="20" fill="#333" opacity="0.8"/>
+  <text x="113" y="605" font-family="Arial" font-size="16" fill="#FFF">👍</text>
+  
+  <circle cx="170" cy="600" r="20" fill="#333" opacity="0.8"/>
+  <text x="163" y="605" font-family="Arial" font-size="16" fill="#FFF">❤️</text>
+  
+  <circle cx="220" cy="600" r="20" fill="#333" opacity="0.8"/>
+  <text x="213" y="605" font-family="Arial" font-size="16" fill="#FFF">😮</text>
+  
+  <circle cx="270" cy="600" r="20" fill="#333" opacity="0.8"/>
+  <text x="263" y="605" font-family="Arial" font-size="16" fill="#FFF">🔥</text>
+</svg>
