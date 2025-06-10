@@ -55,34 +55,37 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col justify-center items-center h-[80vh] login-page">
       <h1 className="titulo font-mono font-bold text-4xl">Stream Share</h1>
-      <form
-        ref={formRef}
-        style={{ display: "flex", flexDirection: "column" }}
-        className="form"
-      >
-        <input
-          className="input"
-          type="email"
-          placeholder="digite aqui o seu e-mail"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
-          }
-        />
-        <input
-          className="input"
-          type="password"
-          placeholder="digite aqui a sua senha"
-          value={senha}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSenha(e.target.value)
-          }
-        />
-        <button className="font-mono button" type="submit">
-          Enviar
-        </button>
-        {isLoggedIn && <p onClick={() => clicou("sfdsdf")}>Bem-vindo!</p>}
-      </form>
+      <div className="space flex  flex-col items-center">
+        <h3 className="subtitulo font-mono">Entrar na sua conta</h3>
+        <form
+          ref={formRef}
+          style={{ display: "flex", flexDirection: "column" }}
+          className="form"
+        >
+          <input
+            className="input-nome"
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
+          />
+          <input
+            className="input-senha"
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSenha(e.target.value)
+            }
+          />
+          <button className="font-mono button" type="submit">
+            Enviar
+          </button>
+          {isLoggedIn && <p onClick={() => clicou("sfdsdf")}>Bem-vindo!</p>}
+        </form>
+      </div>
     </div>
   );
 }

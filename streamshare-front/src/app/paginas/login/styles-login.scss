@@ -3,15 +3,41 @@
     color: white;
     margin-bottom: 40px;
   }
+  .subtitulo {
+    color: white;
+    font-size: 1.2rem;
+  }
+  .space {
+    padding: 20px 25px 40px 25px;
+    border-radius: 2rem;
+    background-color: #1a0a5b;
+  }
   .form {
-    width: 265px;
-    .input {
+    width: 280px;
+
+    .input-nome {
       color: white;
-      border: 2px solid rgb(82, 86, 95);
-      margin: 18px 0px 0px 0px;
+      border-bottom: 2px solid rgb(82, 86, 95);
+      margin: 28px 0px 0px 0px;
       padding: 8px 12px 8px 12px;
-      border-style: solid;
-      border-radius: 0.25rem; /* rounded */
+      outline: none;
+      border-radius: 4px;
+      background-color: rgba(11, 2, 2, 0.359);
+      &:focus {
+        border-color: #143dc3;
+      }
+      &:hover {
+        border-color: #143dc3;
+      }
+    }
+
+    .input-senha {
+      color: white;
+      border-bottom: 2px solid rgb(82, 86, 95);
+      margin: 24px 0px 0px 0px;
+      padding: 8px 12px 8px 12px;
+      border-radius: 4px;
+      background-color: rgba(11, 2, 2, 0.359);
       outline: none;
       &:focus {
         border-color: #143dc3;
@@ -21,7 +47,7 @@
       }
     }
     .button {
-      margin-top: 28px;
+      margin-top: 32px;
       background: linear-gradient(
         to right,
         // aplica o gradiente da esquerda pra direita
