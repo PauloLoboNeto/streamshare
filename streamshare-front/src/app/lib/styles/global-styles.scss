@@ -1,0 +1,15 @@
+@use 'tokens/color';
+@use 'tokens/spacing';
+@use 'tokens/typografy';
+
+@use './../componentes/button/style-button';
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+html {
+  overflow: hidden;
+  background-color: #0e0b1d;
+}

@@ -1,0 +1,30 @@
+@use "../../styles/tokens/color" as color;
+@use "../../styles/tokens/typografy" as font;
+
+.ssButton {
+  margin-top: 32px;
+  background: linear-gradient(
+    to right,
+    // aplica o gradiente da esquerda pra direita
+    #143dc3,
+    #a377fb
+  );
+  color: color.$color-white; // texto visível sobre o gradiente
+  padding: 12px 16px;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: font.$font-family;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.03);
+    background: linear-gradient(
+      to right,
+      // aplica o gradiente da esquerda pra direita
+      #156ff8,
+      #5831f6
+    );
+  }
+}

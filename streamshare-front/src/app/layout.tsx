@@ -1,10 +1,12 @@
+import './lib/styles/global-styles.scss';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{backgroundColor: '#0e0b1d'}}>
+    <html lang="en">
       <body>
         {children}
       </body>

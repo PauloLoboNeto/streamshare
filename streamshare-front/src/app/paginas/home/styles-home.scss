@@ -1,0 +1,23 @@
+@use "../../lib/styles/tokens/color" as color;
+@use "../../lib/styles/tokens/typografy" as font;
+
+#sidebar {
+  display: flex;
+  width: 200px;
+  height: 100vh;
+  background-color: rgb(20, 23, 25);
+  flex-direction: column;
+  align-items: center;
+  span {
+    color: white;
+    margin-bottom: 20px;
+  }
+  hr {
+    width: calc(100% - 30px);
+    box-sizing: border-box;
+    border-color: rgb(110, 107, 107);
+  }
+}
+
+.section {
+}

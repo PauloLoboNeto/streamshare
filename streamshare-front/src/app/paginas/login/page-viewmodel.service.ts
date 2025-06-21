@@ -1,4 +1,4 @@
-import { Observable, Observer, of } from "rxjs";
+import { Observable, Observer, of, switchMap } from "rxjs";
 import sha256 from 'crypto-js/sha256';
 
 export class LoginRequest {
@@ -14,7 +14,6 @@ export class LoginRequest {
 export class LoginViewModelService {
     private codeVerifier: string = '';
     private codeChallenge: string = '';
-    private tokenOpaque = '';
 
     public login(request: LoginRequest): Observable<string> {
         console.log(request);
@@ -23,15 +22,28 @@ export class LoginViewModelService {
         this.codeChallenge = this.generateCodeChallenge(this.codeVerifier);
 
         return new Observable<string>((observer: Observer<string>) => {
-            this.api(request.user, request.password, this.codeChallenge).pipe().subscribe((res: { success: boolean, authCode: string }) => {
-                if (res.success == true) {
-                    this.changeTokenOpaque(res.authCode, this.codeChallenge);
-                    observer.next('success');
-                    observer.complete();
-                }
-                observer.error('error');
-                observer.complete();
-            });
+            this.api(request.user, request.password, this.codeChallenge)
+                .pipe(
+                    switchMap((res: { success: boolean, authCode: string }) =>
+                        this.changeTokenOpaque(res.authCode, this.codeChallenge)
+                    )
+                ).subscribe({
+                    next: (res: string) => {
+                        if (res) {
+                            observer.next('success');
+                            observer.complete();
+                            return;
+                        }
+                        observer.error('error');
+                        observer.complete();
+                        return;
+                    },
+                    error: (err) => {
+                        observer.error(err);
+                        observer.complete();
+                        return;
+                    }
+                });
         })
 
     }
@@ -71,6 +83,6 @@ export class LoginViewModelService {
     }
 
 
-    private generateCodeverifier = (): string => Math.random().toString(36).substring(2, 15);
+    private generateCodeverifier = (): string => { return Math.random().toString(36).substring(2, 15); }
     private generateCodeChallenge = (codeVerifier: string): string => btoa(sha256(codeVerifier).toString())
 }

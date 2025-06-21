@@ -1,22 +1,42 @@
+@use "../../lib/styles/tokens/color" as color;
+@use "../../lib/styles/tokens/typografy" as font;
+
 .login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  text-align: center;
+  height: 80vh;
+
+  //  font-mono font-bold text-4xl
   .titulo {
-    color: white;
+    color: color.$color-white;
     margin-bottom: 40px;
+    font-family: font.$font-family;
+    font-weight: 600;
   }
   .subtitulo {
-    color: white;
+    color: color.$color-white;
     font-size: 1.2rem;
+    font-family: font.$font-family;
+    font-weight: 600;
   }
   .space {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
     padding: 20px 25px 40px 25px;
     border-radius: 2rem;
     background-color: #1a0a5b;
   }
   .form {
+    display: flex;
+    flex-direction: column;
     width: 280px;
 
     .input-nome {
-      color: white;
+      color: color.$color-white;
       border-bottom: 2px solid rgb(82, 86, 95);
       margin: 28px 0px 0px 0px;
       padding: 8px 12px 8px 12px;
@@ -32,7 +52,7 @@
     }
 
     .input-senha {
-      color: white;
+      color: color.$color-white;
       border-bottom: 2px solid rgb(82, 86, 95);
       margin: 24px 0px 0px 0px;
       padding: 8px 12px 8px 12px;
@@ -44,32 +64,6 @@
       }
       &:hover {
         border-color: #143dc3;
-      }
-    }
-    .button {
-      margin-top: 32px;
-      background: linear-gradient(
-        to right,
-        // aplica o gradiente da esquerda pra direita
-        #143dc3,
-        #a377fb
-      );
-      color: white; // texto visível sobre o gradiente
-      padding: 12px 16px;
-      border: none;
-      border-radius: 28px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease;
-      &:hover {
-        transform: scale(1.03);
-        background: linear-gradient(
-          to right,
-          // aplica o gradiente da esquerda pra direita
-          #156ff8,
-          #5831f6
-        );
       }
     }
   }

@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { exhaustMap, fromEvent, tap } from "rxjs";
 import { LoginRequest, LoginViewModelService } from "./page-viewmodel.service";
-import "./../../globals.css"; // entender porque isso pesa 2seg num 3g
+import "./../../lib/componentes/button/button";
 import "./styles-login.scss";
+import { useRouter } from "next/navigation";
+
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
 // ngOnChanges	    useEffect(() => {}, [prop])
@@ -17,20 +19,22 @@ export default function LoginPage() {
   const formRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const viewModel = new LoginViewModelService();
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const form = formRef.current;
     if (!form) return;
-
     const handleLogin = (event: Event) => {
       event.preventDefault();
+      setLoading(true);
       const request = new LoginRequest(email, senha);
 
       return viewModel.login(request).pipe(
         tap({
-          next: (res: string) => {
-            console.log(res);
+          next: () => {
             setIsLoggedIn(true);
+            router.push("/paginas/home");
           },
           error: (error) => console.log(error),
         })
@@ -48,20 +52,16 @@ export default function LoginPage() {
     };
   });
 
-  function clicou(e: any) {
-    console.log(e);
-  }
+  // function clicou(e: any) {
+  //   console.log(e);
+  // }
 
   return (
-    <div className="flex flex-col justify-center items-center h-[80vh] login-page">
-      <h1 className="titulo font-mono font-bold text-4xl">Stream Share</h1>
-      <div className="space flex  flex-col items-center">
-        <h3 className="subtitulo font-mono">Entrar na sua conta</h3>
-        <form
-          ref={formRef}
-          style={{ display: "flex", flexDirection: "column" }}
-          className="form"
-        >
+    <div className="login-page">
+      <h1 className="titulo">Stream Share</h1>
+      <div className="space">
+        <h3 className="subtitulo">Entrar na sua conta</h3>
+        <form ref={formRef} className="form">
           <input
             className="input-nome"
             type="email"
@@ -80,10 +80,14 @@ export default function LoginPage() {
               setSenha(e.target.value)
             }
           />
-          <button className="font-mono button" type="submit">
+          <ss-button loading={String(loading)} class="ssButton">
             Enviar
-          </button>
-          {isLoggedIn && <p onClick={() => clicou("sfdsdf")}>Bem-vindo!</p>}
+          </ss-button>
+          {/* {isLoggedIn && (
+            <p style={{ color: "white" }} onClick={() => clicou("sfdsdf")}>
+              Bem-vindo!
+            </p>
+          )} */}
         </form>
       </div>
     </div>
