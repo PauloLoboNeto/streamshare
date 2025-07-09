@@ -12,6 +12,13 @@ export declare module "react" {
                 class: any;
                 loading?: any;
             };
+            'ss-card': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+                label?: string;
+                cssText?: string;
+                type?: any;
+                class: any;
+                loading?: any;
+            };
             'divider': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
             };
         }

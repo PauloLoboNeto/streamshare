@@ -1,15 +1,34 @@
-@use 'tokens/color';
-@use 'tokens/spacing';
-@use 'tokens/typografy';
+@use "tokens/color";
+@use "tokens/spacing";
+@use "tokens/typografy";
 
-@use './../componentes/button/style-button';
+@use "./../componentes/button/style-button";
+@use "./../componentes/card/style-card";
 
 body {
-    margin: 0;
-    overflow: hidden;
+  margin: 0;
+  overflow: hidden;
 }
 
 html {
   overflow: hidden;
   background-color: #0e0b1d;
+}
+
+.overflow-horizontal {
+  overflow-y: auto;
+  scrollbar-width: 0px;
+  -ms-overflow-style: none; // IE and Edge
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari and Opera
+  }
+}
+
+.mouse-grabbing {
+  cursor: grab;
+  user-select: none; // evita seleção de texto ao arrastar
+
+  &.grabing {
+    cursor: grabbing;
+  }
 }
