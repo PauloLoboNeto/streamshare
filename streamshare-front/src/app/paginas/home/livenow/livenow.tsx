@@ -1,5 +1,5 @@
-import "./../../../lib/componentes/card/card";
-import "./../../../lib/componentes/card/style-card.scss";
+import "@lib/card/card";
+import "@lib/card/style-card.scss";
 
 export default function LiveNow() {
   return (
