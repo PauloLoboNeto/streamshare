@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { exhaustMap, fromEvent, tap } from "rxjs";
 import { LoginRequest, LoginViewModelService } from "./page-viewmodel.service";
-import "./../../lib/componentes/button/button";
-import "./styles-login.scss";
+import "@lib/button/button";
+import styles from "./styles-login.module.scss";
+import { useRouter } from "next/router";
+
 // import { useRouter } from "next/navigation";
 
 // Angular	        Next.js (React)
@@ -19,7 +21,7 @@ export default function LoginPage() {
   const formRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const viewModel = new LoginViewModelService();
-  // const router = useRouter();
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function LoginPage() {
           next: () => {
             console.log("Login successful", isLoggedIn);
             setIsLoggedIn(true);
-            // router.push("/paginas/home");
+            router.push("/home");
           },
           error: (error) => console.log(error),
         })
@@ -58,13 +60,13 @@ export default function LoginPage() {
   // }
 
   return (
-    <div className="login-page">
-      <h1 className="titulo">Stream Share</h1>
-      <div className="space">
-        <h3 className="subtitulo">Entrar na sua conta</h3>
-        <form ref={formRef} className="form">
+    <div className={styles['login-page']}>
+      <h1 className={styles.titulo}>Stream Share</h1>
+      <div className={styles.space}>
+        <h3 className={styles.subtitulo}>Entrar na sua conta</h3>
+        <form ref={formRef} className={styles.form}>
           <input
-            className="input-nome"
+            className={styles['input-nome']}
             type="email"
             placeholder="E-mail"
             value={email}
@@ -73,7 +75,7 @@ export default function LoginPage() {
             }
           />
           <input
-            className="input-senha"
+            className={styles['input-senha']}
             type="password"
             placeholder="Senha"
             value={senha}

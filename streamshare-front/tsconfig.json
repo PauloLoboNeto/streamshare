@@ -27,14 +27,14 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/app/paginas/*"
+      "@pages/*": [
+        "./src/pages/*"
       ],
       "@lib/*": [
-        "./src/app/lib/componentes/*"
+        "./src/lib/componentes/*"
       ],
       "@styles/*": [
-        "./src/app/lib/styles/*"
+        "./src/lib/styles/*"
       ]
     }
   },
@@ -45,7 +45,7 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "build/types/**/*.ts"
-  ],
+, "next.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

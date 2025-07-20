@@ -1,0 +1,15 @@
+.section {
+  padding: 20px;
+  width: calc(100% - 250px);
+  .cards {
+    display: grid;
+    grid-auto-flow: column; // ← faz o grid preencher horizontalmente
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+  }
+  .live {
+    &.title {
+      color: aliceblue;
+    }
+  }
+}
