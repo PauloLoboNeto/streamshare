@@ -1,5 +1,7 @@
 package org.paulo.streamshare.domain.ports.`in`
 
+import org.paulo.streamshare.domain.model.AutenticacaoModel
+
 interface IAutenticacaoUseCasePort {
-    fun autenticarUsuario(codeChallenge: String, credentials: String): String
+    fun autenticarUsuario(model: AutenticacaoModel): String
 }

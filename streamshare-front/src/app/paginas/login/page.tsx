@@ -1,11 +1,11 @@
 "use client";
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useEffect, useRef, useState } from "react";
 import { exhaustMap, fromEvent, tap } from "rxjs";
 import { LoginRequest, LoginViewModelService } from "./page-viewmodel.service";
 import "./../../lib/componentes/button/button";
 import "./styles-login.scss";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
@@ -19,7 +19,7 @@ export default function LoginPage() {
   const formRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const viewModel = new LoginViewModelService();
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,8 +33,9 @@ export default function LoginPage() {
       return viewModel.login(request).pipe(
         tap({
           next: () => {
+            console.log("Login successful", isLoggedIn);
             setIsLoggedIn(true);
-            router.push("/paginas/home");
+            // router.push("/paginas/home");
           },
           error: (error) => console.log(error),
         })

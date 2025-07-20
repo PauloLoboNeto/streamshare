@@ -1,5 +1,7 @@
 package org.paulo.streamshare.application.web
 
+import org.paulo.streamshare.application.web.request.AutenticacaoRequest
+import org.paulo.streamshare.domain.model.AutenticacaoModel
 import org.paulo.streamshare.domain.ports.`in`.IAutenticacaoUseCasePort
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -11,7 +13,11 @@ class AutenticacaoController(private val autenticacaoUseCase: IAutenticacaoUseCa
 
 
     @PostMapping("/autenticar")
-    private fun autenticar(@RequestB) {
-        this.autenticacaoUseCase.autenticarUsuario()
+    private fun autenticar(request: AutenticacaoRequest) {
+        val autenticarUsuarioModel = AutenticacaoModel.builder(
+            request.email,
+            request.senha,
+            request.codeChallenge)
+        this.autenticacaoUseCase.autenticarUsuario(autenticarUsuarioModel)
     }
 }
