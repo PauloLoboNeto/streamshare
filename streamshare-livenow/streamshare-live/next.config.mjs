@@ -9,16 +9,16 @@ const nextConfig = {
     config.output.publicPath = "auto";
     config.plugins.push(
       new NextFederationPlugin({
-        name: "_mf_content",
+        name: "_mfe_live",
         // shareStrategy:'loaded-first',
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./page": "./src/pages/_content/index.tsx",
-          "./app": "./src/pages/_app.tsx",
+          "./page": "./src/pages/index.tsx",
+          // "./app": "./src/pages/_app.tsx",
         },
         shared: {
-          react: { singleton: true, requiredVersion: false },
-          "react-dom": { singleton: true, requiredVersion: false },
+          // react: { singleton: true, requiredVersion: false },
+          // "react-dom": { singleton: true, requiredVersion: false },
         },
         // extraOptions: {
         //   exposePages: true,

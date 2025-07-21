@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { exhaustMap, fromEvent, tap } from "rxjs";
 import { LoginRequest, LoginViewModelService } from "./page-viewmodel.service";
-import "@lib/button/button";
+// import "@lib/button/button";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/router";
 
@@ -83,9 +83,9 @@ export default function LoginPage() {
               setSenha(e.target.value)
             }
           />
-          <ss-button loading={String(loading)} class="ssButton">
+          {/* <ss-button loading={String(loading)} class="ssButton">
             Enviar
-          </ss-button>
+          </ss-button> */}
           {/* {isLoggedIn && (
             <p style={{ color: "white" }} onClick={() => clicou("sfdsdf")}>
               Bem-vindo!

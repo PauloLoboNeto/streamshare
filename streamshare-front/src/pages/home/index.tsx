@@ -1,12 +1,20 @@
-"use client";
+// "use client";
 
-import HomeLayout from "./layout";
-import LiveNow from "./livenow/livenow";
+import dynamic from "next/dynamic";
+import React from "react";
+
+const RemotePage = dynamic(() => import("remoteApp/page"), {
+  ssr: false,
+  loading: () => <p>Carregando remoto...</p>,
+});
 
 export default function HomePage() {
   return (
-    <HomeLayout>
-      <LiveNow></LiveNow>
-    </HomeLayout>
+    <>
+      <RemotePage />
+    </>
+    // <HomeLayout>
+    //   <LiveNow></LiveNow>
+    // </HomeLayout>
   );
 }
