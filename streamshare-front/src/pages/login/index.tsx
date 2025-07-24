@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { exhaustMap, fromEvent, tap } from "rxjs";
-import { LoginRequest, LoginViewModelService } from "./page-viewmodel.service";
+import { LoginRequest, useLogin } from "./page-viewmodel.service";
 // import "@lib/button/button";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/router";
+import "@lib/button/button";
+import { ClientOnly } from "@lib/clientOnly/client-only";
 
 // import { useRouter } from "next/navigation";
 
@@ -20,9 +22,9 @@ export default function LoginPage() {
   const [senha, setSenha] = useState("");
   const formRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const viewModel = new LoginViewModelService();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+  const { login } = useLogin();
 
   useEffect(() => {
     const form = formRef.current;
@@ -30,9 +32,10 @@ export default function LoginPage() {
     const handleLogin = (event: Event) => {
       event.preventDefault();
       setLoading(true);
+
       const request = new LoginRequest(email, senha);
 
-      return viewModel.login(request).pipe(
+      return login(request).pipe(
         tap({
           next: () => {
             console.log("Login successful", isLoggedIn);
@@ -60,13 +63,13 @@ export default function LoginPage() {
   // }
 
   return (
-    <div className={styles['login-page']}>
+    <div className={styles["login-page"]}>
       <h1 className={styles.titulo}>Stream Share</h1>
       <div className={styles.space}>
         <h3 className={styles.subtitulo}>Entrar na sua conta</h3>
         <form ref={formRef} className={styles.form}>
           <input
-            className={styles['input-nome']}
+            className={styles["input-nome"]}
             type="email"
             placeholder="E-mail"
             value={email}
@@ -75,7 +78,7 @@ export default function LoginPage() {
             }
           />
           <input
-            className={styles['input-senha']}
+            className={styles["input-senha"]}
             type="password"
             placeholder="Senha"
             value={senha}
@@ -83,9 +86,11 @@ export default function LoginPage() {
               setSenha(e.target.value)
             }
           />
-          {/* <ss-button loading={String(loading)} class="ssButton">
-            Enviar
-          </ss-button> */}
+          <ClientOnly>
+            <ss-button loading={String(loading)} text="Enviar">
+              Enviar
+            </ss-button>
+          </ClientOnly>
           {/* {isLoggedIn && (
             <p style={{ color: "white" }} onClick={() => clicou("sfdsdf")}>
               Bem-vindo!

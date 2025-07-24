@@ -9,8 +9,9 @@ export declare module "react" {
                 label?: string;
                 cssText?: string;
                 type?: any;
-                class: any;
+                class?: any;
                 loading?: any;
+                text: string;
             };
             'ss-card': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
                 label?: string;
