@@ -1,15 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { exhaustMap, fromEvent, tap } from "rxjs";
-import { LoginRequest, useLogin } from "./page-viewmodel.service";
-// import "@lib/button/button";
+import { catchError, exhaustMap, fromEvent, of } from "rxjs";
+import { useLogin } from "./page-viewmodel.service";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/router";
 import "@lib/button/button";
 import { ClientOnly } from "@lib/clientOnly/client-only";
-
-// import { useRouter } from "next/navigation";
+import { LoginRequest } from "../../types/login-request";
 
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
@@ -18,8 +16,9 @@ import { ClientOnly } from "@lib/clientOnly/client-only";
 // ngAfterViewInit	useEffect(() => {}, []) + useRef()
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const emailRef = useRef("");
+  const senhaRef = useRef("");
+
   const formRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const router = useRouter();
@@ -28,39 +27,45 @@ export default function LoginPage() {
 
   useEffect(() => {
     const form = formRef.current;
+
     if (!form) return;
+
     const handleLogin = (event: Event) => {
-      event.preventDefault();
       setLoading(true);
-
-      const request = new LoginRequest(email, senha);
-
-      return login(request).pipe(
-        tap({
-          next: () => {
-            console.log("Login successful", isLoggedIn);
-            setIsLoggedIn(true);
-            router.push("/home");
-          },
-          error: (error) => console.log(error),
-        })
-      );
+      event.preventDefault();
+      return login({
+        user: emailRef.current,
+        password: senhaRef.current,
+      } as LoginRequest);
     };
 
     const submitObservable = fromEvent<Event>(form, "submit");
+
     const subscription = submitObservable
-      .pipe(exhaustMap((event: Event) => handleLogin(event)))
-      .subscribe();
+      .pipe(
+        exhaustMap((event: Event) => {
+          return handleLogin(event).pipe(
+            catchError(() => {
+              setLoading(false);
+              return of(null);
+            })
+          );
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            router.push("/home");
+          }
+        },
+      });
 
     return () => {
       console.log("Cleanup: aqui");
       subscription.unsubscribe();
     };
-  });
-
-  // function clicou(e: any) {
-  //   console.log(e);
-  // }
+  }, []);
 
   return (
     <div className={styles["login-page"]}>
@@ -72,18 +77,17 @@ export default function LoginPage() {
             className={styles["input-nome"]}
             type="email"
             placeholder="E-mail"
-            value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
+              (emailRef.current = e.target.value)
             }
           />
           <input
             className={styles["input-senha"]}
             type="password"
             placeholder="Senha"
-            value={senha}
+            // value={senha}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setSenha(e.target.value)
+              (senhaRef.current = e.target.value)
             }
           />
           <ClientOnly>

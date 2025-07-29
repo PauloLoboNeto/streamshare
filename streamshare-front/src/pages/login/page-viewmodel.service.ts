@@ -1,15 +1,6 @@
-import { defer, Observable, Observer, switchMap, tap } from "rxjs";
+import { defer, Observable, Observer, switchMap } from "rxjs";
 import sha256 from 'crypto-js/sha256';
-
-export class LoginRequest {
-    user: string;
-    password: string;
-
-    constructor(user: string, password: string) {
-        this.user = user;
-        this.password = password;
-    }
-}
+import { LoginRequest } from "../../types/login-request";
 
 export function useLogin() {
     let codeVerifier: string;
@@ -18,71 +9,70 @@ export function useLogin() {
     const generateCodeverifier = (): string => Math.random().toString(36).substring(2, 15);
     const generateCodeChallenge = (codeVerifier: string): string => btoa(sha256(codeVerifier).toString());
 
-    const api = (user: string, pass: string, code: string): Observable<{ success: boolean, authCode: string }> => {
+    const api = (user: string, pass: string, codeChallenge: string): Observable<string> => {
         const request = {
-            code_challenge: code,
+            code_challenge: codeChallenge,
             email: user,
             senha: pass
         }
 
+        type response = { auth_code: string };
 
         return defer(() =>
-            fetch('http://localhost:8080/autenticacao/v1/autenticar',
+            fetch('http://localhost:8080/v1/authorize',
                 { method: 'POST', body: JSON.stringify(request), headers: { 'Content-Type': 'application/json' } }
-            ).then((res) => res.json())
+            ).then(async (res: Response) => {
+                const json = await res.json() as response;
+                if (!res.ok && res.status != 200) {
+                    throw { mensagem: 'Login falhou' };
+                }
+                return json.auth_code;
+            }).catch(() => {
+                throw { mensagem: 'Login falhou' };
+            })
         )
-        // return of({ success: true, authCode: 'authcoderesponse' });
     }
 
-    const changeTokenAPI = (authCode: string, codeVerifier: string): { res: boolean, token: string } => {
+    const changeTokenOpaque = (authCode: string, codeVerifier: string): Observable<string> => {
+        type responseToken = { jwt: string };
         const request = {
             code_verifier: codeVerifier,
             auth_code: authCode
         }
-        console.log(request);
-        return { res: true, token: 'token' };
-    }
 
-    const changeTokenOpaque = (authCode: string, codeVerifier: string): Observable<string> => {
-        return new Observable((observer: Observer<string>) => {
-            const res = changeTokenAPI(authCode, codeVerifier);
-            if (res.res == true) {
-                observer.next(res.token);
-                observer.complete();
-                return;
-            }
-            observer.next('error');
-            observer.complete();
-            return;
-        })
+        return defer(() =>
+            fetch('http://localhost:8080/v1/token', {
+                method: 'POST',
+                body: JSON.stringify(request),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(async (res: Response) => {
+                const json = await res.json() as responseToken;
+                console.log(res);
+                console.log(json);
+                if (!res.ok && res.status != 200) {
+                    throw { mensagem: 'Exchange falhou' };
+                }
+                return json.jwt
+            }).catch(() => {
+                throw { mensagem: 'Exchange falhou' };
+            })
+        );
     }
 
 
     const login = (request: LoginRequest): Observable<string> => {
-        console.log(request);
         //implementando oauth sem o gerenciamento centralizado do frontend do AS e somente usando um front único para o processo.
-        
         codeVerifier = generateCodeverifier();
         codeChallenge = generateCodeChallenge(codeVerifier);
-        console.log("Code Verifier:", codeVerifier);
-        console.log("Code Challenge:", codeChallenge);
 
 
         return new Observable<string>((observer: Observer<string>) => {
             api(request.user, request.password, codeChallenge)
                 .pipe(
-                    tap(res => console.log("API Response:", res)),
-                    switchMap((res: { success: boolean, authCode: string }) =>
-                        changeTokenOpaque(res.authCode, codeChallenge)
-                    )
+                    switchMap((authCode: string) => changeTokenOpaque(authCode, codeVerifier))
                 ).subscribe({
                     next: (res: string) => {
-                        if (res) {
-                            observer.next('success');
-                            observer.complete();
-                            return;
-                        }
-                        observer.error('error');
+                        observer.next(res);
                         observer.complete();
                         return;
                     },
