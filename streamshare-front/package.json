@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "crypto-js": "^4.2.0",
     "@module-federation/nextjs-mf": "^8.4.12",
+    "@tanstack/react-query": "^5.83.0",
+    "crypto-js": "^4.2.0",
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
@@ -18,16 +19,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "^14",
-    "sass": "^1.89.1",
-    "typescript": "^5",
-    "@tailwindcss/postcss": "^4",
-    "@types/crypto-js": "^4.2.2",
     "rxjs": "^7.8.2",
-    "tailwindcss": "^4"
+    "sass": "^1.89.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

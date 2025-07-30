@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { catchError, exhaustMap, fromEvent, of } from "rxjs";
-import { useLogin } from "./page-viewmodel.service";
+import { useRef } from "react";
+import { useLogin } from "./page-viewmodel.service-withfun";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/router";
 import "@lib/button/button";
 import { ClientOnly } from "@lib/clientOnly/client-only";
 import { LoginRequest } from "../../types/login-request";
+import { useMutation } from "@tanstack/react-query";
 
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
@@ -18,61 +18,36 @@ import { LoginRequest } from "../../types/login-request";
 export default function LoginPage() {
   const emailRef = useRef("");
   const senhaRef = useRef("");
-
-  const formRef = useRef(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(false);
   const { login } = useLogin();
 
-  useEffect(() => {
-    const form = formRef.current;
+  const mutation = useMutation({
+    mutationFn: (request: LoginRequest) => login(request),
+    onSuccess: () => {
+      router.push("/home");
+    },
+    onError: () => {}
+  });
 
-    if (!form) return;
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (mutation.isPending) {
+      console.log("Login em andamento... ignorando nova tentativa.");
+      return;
+    }
 
-    const handleLogin = (event: Event) => {
-      setLoading(true);
-      event.preventDefault();
-      return login({
-        user: emailRef.current,
-        password: senhaRef.current,
-      } as LoginRequest);
-    };
-
-    const submitObservable = fromEvent<Event>(form, "submit");
-
-    const subscription = submitObservable
-      .pipe(
-        exhaustMap((event: Event) => {
-          return handleLogin(event).pipe(
-            catchError(() => {
-              setLoading(false);
-              return of(null);
-            })
-          );
-        })
-      )
-      .subscribe({
-        next: (res) => {
-          if (res) {
-            setIsLoggedIn(true);
-            router.push("/home");
-          }
-        },
-      });
-
-    return () => {
-      console.log("Cleanup: aqui");
-      subscription.unsubscribe();
-    };
-  }, []);
+    mutation.mutate({
+      user: emailRef.current,
+      password: senhaRef.current,
+    } as LoginRequest);
+  };
 
   return (
     <div className={styles["login-page"]}>
       <h1 className={styles.titulo}>Stream Share</h1>
       <div className={styles.space}>
         <h3 className={styles.subtitulo}>Entrar na sua conta</h3>
-        <form ref={formRef} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             className={styles["input-nome"]}
             type="email"
@@ -91,7 +66,7 @@ export default function LoginPage() {
             }
           />
           <ClientOnly>
-            <ss-button loading={String(loading)} text="Enviar">
+            <ss-button loading={String(mutation.isPending)} text="Enviar">
               Enviar
             </ss-button>
           </ClientOnly>

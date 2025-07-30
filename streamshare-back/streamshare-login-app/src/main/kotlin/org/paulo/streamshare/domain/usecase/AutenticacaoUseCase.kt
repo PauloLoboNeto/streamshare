@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service
 class AutenticacaoUseCase: IAutenticacaoUseCasePort {
 
     override fun autenticarUsuario(model: AutenticacaoModel): String {
+        if(model.email == "paulo@gmail.com" && model.senha == "1")
         return "authcode"
+        else throw Exception("forbidden")
     }
 }
