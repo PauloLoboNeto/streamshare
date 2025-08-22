@@ -1,13 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { useLogin } from "./page-viewmodel.service-withfun";
+import { login } from "./page-viewmodel.service-withfun";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/router";
 import "@lib/button/button";
 import { ClientOnly } from "@lib/clientOnly/client-only";
 import { LoginRequest } from "../../types/login-request";
-import { useMutation } from "@tanstack/react-query";
 
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
@@ -19,27 +18,31 @@ export default function LoginPage() {
   const emailRef = useRef("");
   const senhaRef = useRef("");
   const router = useRouter();
-  const { login } = useLogin();
-
-  const mutation = useMutation({
-    mutationFn: (request: LoginRequest) => login(request),
-    onSuccess: () => {
-      router.push("/home");
-    },
-    onError: () => {}
-  });
+  const isLoading = useRef(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (mutation.isPending) {
+
+    if (isLoading.current) {
       console.log("Login em andamento... ignorando nova tentativa.");
       return;
     }
 
-    mutation.mutate({
+    isLoading.current = true;
+
+    login({
       user: emailRef.current,
       password: senhaRef.current,
-    } as LoginRequest);
+    } as LoginRequest)
+      .then(() => {
+        router.push("/home");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      })
+      .finally(() => {
+        isLoading.current = false;
+      });
   };
 
   return (
@@ -60,21 +63,15 @@ export default function LoginPage() {
             className={styles["input-senha"]}
             type="password"
             placeholder="Senha"
-            // value={senha}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               (senhaRef.current = e.target.value)
             }
           />
           <ClientOnly>
-            <ss-button loading={String(mutation.isPending)} text="Enviar">
+            <ss-button loading={String(isLoading.current)} text="Enviar">
               Enviar
             </ss-button>
           </ClientOnly>
-          {/* {isLoggedIn && (
-            <p style={{ color: "white" }} onClick={() => clicou("sfdsdf")}>
-              Bem-vindo!
-            </p>
-          )} */}
         </form>
       </div>
     </div>
