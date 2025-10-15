@@ -1,43 +1,40 @@
 type ResponseAuthorize = { auth_code: string };
 type ResponseToken = { jwt: string };
 
-export async function authorize(user: string, pass: string, codeChallenge: string): Promise<string> {
-    const url_authorize = "http://localhost:8080/v1/authorize";
-    const res = await fetch(url_authorize,
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                code_challenge: codeChallenge,
-                email: user,
-                senha: pass
-            }),
-            headers: { 'Content-Type': 'application/json' }
-        });
+const url_authorize = "http://localhost:8080/v1/authorize";
+const url_token = "http://localhost:8080/v1/token";
 
-    if (!res.ok && res.status != 200) {
-        throw { mensagem: 'Authorize falhou' };
-    }
-
-    const auth_code = await res.json() as ResponseAuthorize;
-
-    return auth_code.auth_code;
-}
-
-export async function changeTokenOpaque(authCode: string, codeVerifier: string): Promise<string> {
-    const url_token = "http://localhost:8080/v1/token";
-    const res = await fetch(url_token, {
+const featchAuthorize = (user: string, pass: string, codeChallenge: string) => fetch(url_authorize,
+    {
         method: 'POST',
         body: JSON.stringify({
-            code_verifier: codeVerifier,
-            auth_code: authCode
+            code_challenge: codeChallenge,
+            email: user,
+            senha: pass
         }),
         headers: { 'Content-Type': 'application/json' }
     });
 
-    if (!res.ok && res.status != 200) {
-        throw { mensagem: 'Exchange falhou' };
-    }
+const fetchTokenOpaque = (authCode: string, codeVerifier: string) => fetch(url_token, {
+    method: 'POST',
+    body: JSON.stringify({
+        code_verifier: codeVerifier,
+        auth_code: authCode
+    }),
+    headers: { 'Content-Type': 'application/json' }
+});
 
-    const jwt = await res.json() as ResponseToken;
-    return jwt.jwt;
+const authorizeIsNok = (res: Response) => { if (!res.ok && res.status != 200) throw { mensagem: 'Authorize falhou' } }
+const tokenIsNok = (res: Response) => { if (!res.ok && res.status != 200) throw { mensagem: 'Token falhou' } }
+
+export async function authorize(user: string, pass: string, codeChallenge: string): Promise<string> {
+    const res = await featchAuthorize(user, pass, codeChallenge);
+    authorizeIsNok(res);
+    return (await res.json() as ResponseAuthorize).auth_code;
+}
+
+export async function changeTokenOpaque(authCode: string, codeVerifier: string): Promise<string> {
+    const res = await fetchTokenOpaque(authCode, codeVerifier);
+    tokenIsNok(res);
+    return (await res.json() as ResponseToken).jwt;
 }

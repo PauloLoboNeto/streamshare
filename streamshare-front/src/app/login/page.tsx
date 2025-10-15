@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { login } from "./page-viewmodel.service-withfun";
+// import { login } from "./page-viewmodel.service-withfun";
 import styles from "./styles-login.module.scss";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import "@lib/button/button";
 import { ClientOnly } from "@lib/clientOnly/client-only";
-import { LoginRequest } from "../../types/login-request";
+// import { LoginRequest } from "../../types/login-request";
 
 // Angular	        Next.js (React)
 // ngOnInit	        useEffect(() => {}, [])
@@ -30,19 +30,19 @@ export default function LoginPage() {
 
     isLoading.current = true;
 
-    login({
-      user: emailRef.current,
-      password: senhaRef.current,
-    } as LoginRequest)
-      .then(() => {
+    // login({
+    //   user: emailRef.current,
+    //   password: senhaRef.current,
+    // } as LoginRequest)
+    //   .then(() => {
         router.push("/home");
-      })
-      .catch((error) => {
-        console.error("Login failed:", error);
-      })
-      .finally(() => {
-        isLoading.current = false;
-      });
+      // })
+      // .catch((error) => {
+      //   console.error("Login failed:", error);
+      // })
+      // .finally(() => {
+      //   isLoading.current = false;
+      // });
   };
 
   return (
@@ -68,8 +68,7 @@ export default function LoginPage() {
             }
           />
           <ClientOnly>
-            <ss-button loading={String(isLoading.current)} text="Enviar">
-              Enviar
+            <ss-button loading={String(isLoading.current)} color="white" texto="Enviar">
             </ss-button>
           </ClientOnly>
         </form>

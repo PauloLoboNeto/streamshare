@@ -1,0 +1,42 @@
+@use "../../../lib/styles/tokens/color" as color;
+@use "../../../lib/styles/tokens/typografy" as font;
+
+
+.sidebar {
+  display: flex;
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(20, 23, 25);
+  flex-direction: column;
+  padding: 40px 0px 40px 24px;
+  .item {
+    margin-left: 40px;
+    color: white;
+    margin-bottom: 20px;
+    font-family: font.$font-family;
+    font-size: font.$font-size-sm;
+  }
+  .categorias {
+    align-self: baseline;
+    margin-left: 8px;
+    &.titulo {
+      color: color.$color-gray;
+      margin-bottom: 14px;
+      font-family: font.$font-family;
+      font-size: font.$font-size-lg;
+    }
+    &.item {
+      color: white;
+      margin-bottom: 10px;
+      font-family: font.$font-family;
+      font-size: font.$font-size-sm;
+    }
+  }
+
+  hr {
+    width: calc(100% - 30px);
+    box-sizing: border-box;
+    border-color: rgb(110, 107, 107);
+    margin: 20px 0px 10px 0px;
+  }
+}

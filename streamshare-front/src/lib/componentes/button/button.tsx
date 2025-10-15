@@ -17,7 +17,7 @@ if (typeof window !== "undefined") {
     }
 
     connectedCallback() {
-      const texto = this.getAttribute("text");
+      const texto = this.getAttribute("texto");
         if (texto) {
             this.setAttribute("label", texto);
         }
