@@ -1,4 +1,4 @@
-import "./../lib/styles/global-styles.scss"; // Import global styles
+import "./../components/styles/global-styles.scss"; // Import global styles
 import { ReactQueryProvider } from "./providers/reactquery";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

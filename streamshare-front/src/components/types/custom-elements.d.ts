@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/types/custom-elements.d.ts
-// export { };
-'use client'
+
 export declare module "react" {
     namespace JSX {
         interface IntrinsicElements {

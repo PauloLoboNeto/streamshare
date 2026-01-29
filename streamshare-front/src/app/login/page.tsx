@@ -4,8 +4,8 @@ import { useRef } from "react";
 // import { login } from "./page-viewmodel.service-withfun";
 import styles from "./styles-login.module.scss";
 import { useRouter } from "next/navigation";
-import "@lib/button/button";
-import { ClientOnly } from "@lib/clientOnly/client-only";
+import "../../components/ui/button/button";
+import { ClientOnly } from "../../components/ui/clientOnly/client-only";
 // import { LoginRequest } from "../../types/login-request";
 
 // Angular	        Next.js (React)

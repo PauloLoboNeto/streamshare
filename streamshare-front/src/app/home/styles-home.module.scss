@@ -1,5 +1,5 @@
-@use "../../lib/styles/tokens/color" as color;
-@use "../../lib/styles/tokens/typografy" as font;
+@use "./../../components/styles/tokens/color" as color;
+@use "./../../components/styles/tokens/typografy" as font;
 
 .home {
   display: flex;

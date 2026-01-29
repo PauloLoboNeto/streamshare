@@ -1,5 +1,5 @@
 import styles from "./styles-livenow.module.scss"; // ajuste o caminho se necessário
-import "./../../../lib/componentes/card/card"; // Import custom card component
+import "../../../components/ui/card/card"; // Import custom card component
 
 export default function LiveNow() {
   return (
